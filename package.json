@@ -1,5 +1,5 @@
 {
-  "name": "custom-loader",
+  "name": "@ye-yu/custom-loader",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -10,11 +10,11 @@
   "exports": {
     ".": {
       "import": "./dist/index.js",
-      "types": "./dest.index.d.ts"
+      "types": "./dist/index.d.ts"
     }
   },
   "scripts": {
-    "test": "node --test --import 'custom-loader'",
+    "test": "node --test --import '@ye-yu/custom-loader'",
     "build": "tsgo -p tsconfig.build.json"
   },
   "repository": {

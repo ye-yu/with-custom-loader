@@ -1,6 +1,6 @@
-# custom-loader
+# @ye-yu/custom-loader
 
-`custom-loader` provides a minimal Node custom loader registration mechanism for importing files through a user-defined loader function.
+`@ye-yu/custom-loader` provides a minimal Node custom loader registration mechanism for importing files through a user-defined loader function.
 
 ```ts
 import text from "./fixtures/text.txt" with { loader: "text" }
@@ -13,7 +13,7 @@ This package lets you register a loader by name and then import files with the `
 You must enable loader by importing this module in your command:
 
 ```sh
-node --import "custom-loader" ...
+node --import "@ye-yu/custom-loader" ...
 ```
 
 Next, you could register your loader to match your `with` attributes:
