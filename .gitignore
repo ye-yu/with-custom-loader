@@ -28,8 +28,6 @@ logs/
 
 # VSCode
 .vscode/*
-!.vscode/settings.json
-!.vscode/extensions.json
 
 # OS
 .DS_Store
