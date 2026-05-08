@@ -1,27 +1,56 @@
-# node-typescript-no-transpiler-template
-Absolute minimal setup for typescript projects without bundler because node v22.18.0 already enabled type striping by default.
+# custom-loader
 
-Don't forget to use VSCode extension for [TypeScript Native Preview](https://marketplace.visualstudio.com/items?itemName=TypeScriptTeam.native-preview).
+`custom-loader` provides a minimal Node custom loader registration mechanism for importing files through a user-defined loader function.
 
-Note: decorator functionalities are not natively supported. From [Node documentation](https://nodejs.org/api/typescript.html#type-stripping):
-
-> Since Decorators are currently a [TC39 Stage 3 proposal](https://github.com/tc39/proposal-decorators), they are not transformed and will result in a parser error. Node.js does not provide polyfills and thus will not support decorators until they are supported natively in JavaScript.
-
-To allow decorators, you must perform compilation anyway. However, `tsgo` is able to do this blazingly fast anyway. Just apply option:
-
-```json5
-// ...
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-
-        // for easier build management
-        "rootDir": "src",
-        "outDir": "dist",
-// ...
+```ts
+import text from "./fixtures/text.txt" with { loader: "text" }
 ```
 
-And don't forget to install the compiler:
+## Overview
+
+This package lets you register a loader by name and then import files with the `with { loader: "<name>" }` syntax in ESM.
+
+You must enable loader by importing this module in your command:
 
 ```sh
-npm install @typescript/native-preview
+node --import "custom-loader" ...
 ```
+
+Next, you could register your loader to match your `with` attributes:
+
+```
+registerLoader(name: string, loaderFn: LoaderFn)
+```
+
+The registerer function receives a `LoaderInput` object with:
+- `source`: the raw file contents as a string
+- `path`: the original file path
+
+The loader must return any value that becomes the module's default export.
+
+## Example
+
+A loader that splits a text file into lines:
+
+```ts
+import { registerLoader, type LoaderFn } from "custom-loader"
+
+export const txtLoader: LoaderFn = (input) => {
+  return input.source.split("\n")
+}
+
+registerLoader("text", txtLoader)
+```
+
+Then import a `.txt` fixture using the loader:
+
+```ts
+import text from "./fixtures/text.txt" with { loader: "text" }
+```
+
+In this example, the imported `text` value is an array of strings.
+
+## Notes
+
+- The loader registration happens through `src/register.ts` when the package is imported.
+- The implementation reads the file from disk, applies the registered loader, and returns a module with the loader result as the default export.
