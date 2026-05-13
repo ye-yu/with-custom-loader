@@ -1,3 +1,7 @@
+> Deprecation Notice
+>
+> Use `with-custom-loader` instead
+
 # with-custom-loader
 
 `with-custom-loader` provides a minimal Node custom loader registration mechanism for importing files through a user-defined loader function.
