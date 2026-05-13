@@ -1,5 +1,5 @@
 {
-  "name": "@ye-yu/custom-loader",
+  "name": "with-custom-loader",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -14,20 +14,20 @@
     }
   },
   "scripts": {
-    "test": "node --test --import '@ye-yu/custom-loader'",
+    "test": "node --test --import 'with-custom-loader'",
     "build": "tsgo -p tsconfig.build.json"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ye-yu/ts-custom-loader.git"
+    "url": "git+https://github.com/ye-yu/with-custom-loader.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ye-yu/ts-custom-loader/issues"
+    "url": "https://github.com/ye-yu/with-custom-loader/issues"
   },
-  "homepage": "https://github.com/ye-yu/ts-custom-loader#readme",
+  "homepage": "https://github.com/ye-yu/with-custom-loader#readme",
   "devDependencies": {
     "@types/node": "^22.19.18",
     "@typescript/native-preview": "^7.0.0-dev.20260507.1"

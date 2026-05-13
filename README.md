@@ -1,6 +1,6 @@
-# @ye-yu/custom-loader
+# with-custom-loader
 
-`@ye-yu/custom-loader` provides a minimal Node custom loader registration mechanism for importing files through a user-defined loader function.
+`with-custom-loader` provides a minimal Node custom loader registration mechanism for importing files through a user-defined loader function.
 
 ```ts
 import text from "./fixtures/text.txt" with { loader: "text" }
@@ -13,7 +13,7 @@ This package lets you register a loader by name and then import files with the `
 You must enable loader by importing this module in your command:
 
 ```sh
-node --import "@ye-yu/custom-loader" ...
+node --import "with-custom-loader" ...
 ```
 
 Next, you could register your loader to match your `with` attributes:
@@ -33,7 +33,7 @@ The loader must return any value that becomes the module's default export.
 A loader that splits a text file into lines:
 
 ```ts
-import { registerLoader, type LoaderFn } from "custom-loader"
+import { registerLoader, type LoaderFn } from "with-custom-loader"
 
 export const txtLoader: LoaderFn = (input) => {
   return input.source.split("\n")

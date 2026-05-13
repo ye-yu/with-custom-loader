@@ -1,4 +1,4 @@
-import { registerLoader, type LoaderFn } from "@ye-yu/custom-loader";
+import { registerLoader, type LoaderFn } from "with-custom-loader";
 
 export const txtLoader: LoaderFn = (input) => {
     return input.source.split("\n")
